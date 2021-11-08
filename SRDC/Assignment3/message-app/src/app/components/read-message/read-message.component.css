@@ -1,0 +1,10 @@
+.w-75{
+    width: 200px;
+}
+
+.w-100{
+    width: 100px;
+}
+th.mat-sort-header-sorted {
+    color: black;
+  }

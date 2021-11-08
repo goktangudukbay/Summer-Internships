@@ -1,0 +1,1 @@
+A client and server program that uses UDP connection. Client can send messages and receive echo from the server. The echo can be opened or closed during runtime. 

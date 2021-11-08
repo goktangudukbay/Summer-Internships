@@ -1,0 +1,130 @@
+<head>
+    <title>SOAP JavaScript Client Test</title>
+    <link rel="clientsheet" href="client.css">
+    <script type="text/javascript">
+
+        var usernameLoggedIn;
+
+        function loginRequest() {
+            console.log("sada");
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("POST", "http://localhost:8080", true);
+
+
+            // build SOAP request
+            var sr = '<?xml version="1.0" encoding="utf-8"?>' +
+                '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"' +
+            'xmlns:gs="http://spring.io/guides/gs-producing-web-service">' +
+                '<soapenv:Header/>' +
+            '<soapenv:Body>' +
+            '<gs:getUserRequest>' +
+            '<gs:username>' + document.getElementById("txt_username").value + '</gs:username>' +
+           '<gs:password>' + document.getElementById("txt_password").value + '</gs:password>' +
+            '</gs:getUserRequest>'+
+            '</soapenv:Body>'+
+            '</soapenv:Envelope>';
+
+
+
+            xmlhttp.onreadystatechange = function () {
+
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    document.getElementById("inboxButton").disabled = false;
+
+                    var XmlDoc;
+                    xmlDoc = xmlhttp.responseXML;
+                    if(xmlDoc.getElementsByTagName("username").localeCompare(document.getElementById("username"))){
+                        menu(xmlDoc.getElementsByTagName("firstName"), xmlDoc.getElementByTagName("lastName"), xmlDoc.getElementByTagName("isAdmin"));
+                        usernameLoggedIn =  xmlDoc.getElementsByTagName("username");
+                    }
+                }
+            }
+
+            // Send the POST request
+            xmlhttp.setRequestHeader('Content-Type', 'XMLHttpRequest');
+            xmlhttp.send(sr);
+            // send request
+            // ...
+        }
+
+        function menu(fn, ln, admin){
+            document.getElementById("username").remove();
+            document.getElementById("password").remove();
+            document.getElementById("loginButton").remove();
+
+            document.getElementById("inboxButton").disabled = false;
+            document.getElementById("inboxButton").class = "buttonEnabled";
+
+            document.getElementById("outboxButton").disabled = false;
+            document.getElementById("outboxButton").class = "buttonEnabled";
+
+            document.getElementById("sendButton").disabled = false;
+            document.getElementById("sendButton").class = "buttonEnabled";
+
+            if(admin){
+                document.getElementById("addButton").disabled = false;
+                document.getElementById("addButton").class = "buttonEnabled";
+
+                document.getElementById("updateButton").disabled = false;
+                document.getElementById("updateButton").class = "buttonEnabled";
+
+                document.getElementById("removeButton").disabled = false;
+                document.getElementById("removeButton").class = "buttonEnabled";
+
+                document.getElementById("listButton").disabled = false;
+                document.getElementById("listButton").class = "buttonEnabled";
+            }
+        }
+
+        function inboxRequest(){
+
+        }
+
+        function outboxRequest(){
+        }
+
+        function sendMessageRequest(){
+        }
+
+
+        function addUserRequest(){
+
+        }
+
+        function removeRequest(){
+        }
+
+        function updateRequest(){
+
+        }
+
+        function listRequest(){
+
+        }
+
+    </script>
+</head>
+<body>
+
+<form name ="login" id="login_form" action="#">
+
+    Your Username: <input type="text" name="Username" id="txt_username" />
+
+    Your Password: <input type="password" name="Password" id="txt_password" />
+
+    <input type="button" name="login" value="" onclick="loginRequest();" />
+
+</form>
+
+
+<button class = "buttonDisabled" id = "inboxButton" onclick="inboxRequest()" disabled>Inbox</button>
+<button class = "buttonDisabled" id = "outboxButton" onclick="outboxRequest()" disabled>Outbox</button>
+<button class = "buttonDisabled" id = "sendButton" onclick="sendMessageRequest()" disabled>Send Message</button>
+
+<button class = "buttonDisabled" id = "addButton" onclick="addUserRequest()" disabled>Add User</button>
+<button class = "buttonDisabled" id = "updateButton" onclick="updateRequest()" disabled>Update User</button>
+<button class = "buttonDisabled" id = "removeButton" onclick="removeRequest()" disabled>Remove User</button>
+<button class = "buttonDisabled" id = "listButton" onclick="listRequest()" disabled>List Users</button>
+
+</body>
+</html> <!-- typo -->

@@ -1,0 +1,14 @@
+.buttonDisabled {
+    visibility: hidden;
+}
+
+.buttonEnabled {
+    background-color: #000000;
+    border: 2px solid #C0C0C0;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}

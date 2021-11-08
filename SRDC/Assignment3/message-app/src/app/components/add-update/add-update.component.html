@@ -1,0 +1,101 @@
+<div class="row justify-content-center">
+    <div class="col-md-4 register-employee">
+      <!-- form card register -->
+      <div class="card card-outline-secondary">
+        <div class="card-header">
+          <h3 class="mb-0">User</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+ 
+            <div class="form-group">
+              <label for="inputName">Username</label>
+              <input class="form-control" type="text" formControlName="username">
+              <div *ngIf="submitted && myForm.username.errors?.required">
+                Username is required.
+              </div>
+            </div>
+            <div class="form-group">
+                <label for="inputName">Firstname</label>
+                <input class="form-control" type="text" formControlName="firstname">
+                <div *ngIf="submitted && myForm.firstname.errors?.required">
+                  Firstname is required.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputName">Lastname</label>
+                <input class="form-control" type="text" formControlName="lastname">
+                <div  *ngIf="submitted && myForm.lastname.errors?.required">
+                  Lastname is required.
+                </div>
+            </div>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Birthdate</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="birthdate">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <div  *ngIf="submitted && picker.errors?.required">
+                    Birthdate is required.
+                </div>
+            </mat-form-field>
+
+            <div class="form-group">
+                <label for="inputName">Email</label>
+                <input class="form-control" type="text" formControlName="email">
+                <div  *ngIf="submitted && myForm.email.errors?.required">
+                  Email is required.
+                </div>
+            </div>
+
+
+   
+            <div class="form-group">
+                <label>Gender</label>
+                <div class="row">
+                  <label class="md-check">
+                    <input type="radio" value="Male" name="gender" formControlName="gender">
+                    Male
+                  </label>        
+                  <label class="md-check">
+                    <input type="radio" value="Female" name="gender" formControlName="gender">     
+                    Female
+                  </label>
+                </div>
+                <div  *ngIf="submitted && myForm.gender.errors?.required">
+                    Gender is required.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputName">Password</label>
+                <input class="form-control" type="text" formControlName="password">
+                <div *ngIf="submitted && myForm.password.errors?.required">
+                  Password is required.
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Admin</label>
+                <div class="row">
+                  <label class="md-check">
+                    <input type="radio" value="true" name="isAdmin" formControlName="isAdmin">
+                    Admin
+                  </label>        
+                  <label class="md-check">
+                    <input type="radio" value="false" name="isAdmin" formControlName="isAdmin">     
+                    Not Admin
+                  </label>
+                </div>
+                <div  *ngIf="submitted && myForm.isAdmin.errors?.required">
+                    Email is required.
+                </div>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-success btn-lg btn-block" type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div><!-- form  -->
+    </div>
+  </div>
+ 
